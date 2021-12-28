@@ -7,7 +7,7 @@ from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 import matplotlib.pyplot as plt
 import xgboost as xgb
-from sklearn.ensemble import RandomForestClassifier, VotingClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.dummy import DummyClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -21,7 +21,7 @@ def load_and_transform(table_name):
     df['word_count'] = df['text_a'].apply(lambda x: len(str(x).split(' ')))
     df['char_count'] = df['text_a'].apply(lambda x: len(x))
     df['hashtag_count'] = df['text_a'].apply(lambda x: x.count('#'))
-    df['http_link_count'] = df['text_a'].apply(lambda x: x.count('https://'))
+    df['https_link_count'] = df['text_a'].apply(lambda x: x.count('https://'))
     df['http_link_count'] = df['text_a'].apply(lambda x: x.count('http://'))
     df['number_of_nums'] = df['text_a'].apply(lambda x: len([x for x in x.split() if x.isdigit()]))
     df['number_of_non_ascii'] = df['text_a'].apply(lambda x: len(x) - len([i for i in x if ord(i) < 256]))
